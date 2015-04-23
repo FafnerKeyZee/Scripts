@@ -1,1 +1,33 @@
+var addrdump
+var size
+var dump
 
+gpa "VirtualAllocEx","kernel32.dll"
+bp $RESULT
+run
+run
+run
+bc
+mov size,[esp+0c]
+log size
+rtu
+mov addrdump, eax
+log addrdump
+
+gpa "VirtualProtect","kernel32.dll"
+bp $RESULT
+run
+bc
+ask "Where store the dump ?"
+cmp $RESULT, 0
+je cancel_pressed
+mov dump, $RESULT
+DM addrdump, size, $RESULT
+eval "Script save at : {dump}\r\nSize is : {$RESULT}"
+MSG $RESULT
+jmp out
+cancel_pressed:
+DM addrdump, size, "out.bin"
+
+out:
+ret
