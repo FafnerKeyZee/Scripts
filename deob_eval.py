@@ -16,5 +16,5 @@ for line in sys.stdin.readlines():
         if (len(encoded)> 1):
 		for i in range(0, len(encoded) ):
 			decoded+=chr(eval(encoded[i]))
-		print decoded
+	print decoded
 exit
