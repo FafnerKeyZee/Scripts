@@ -1,3 +1,8 @@
+#!/usr/bin/python
+#
+# Use this script to extract ole part from a mht file
+# Fafner [_KeyZee_]
+
 import zlib
 import base64
 import re
