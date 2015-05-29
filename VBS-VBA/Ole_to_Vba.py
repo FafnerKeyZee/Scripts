@@ -23,7 +23,6 @@ History:
 Todo:
 """
 
-import optparse
 import OleFileIO_PL
 import sys
 import math
@@ -135,10 +134,8 @@ def OLEDump(filename):
     return 
 
 def Main():
-    oParser = optparse.OptionParser(usage='usage: %prog file\n' + __description__, version='%prog ' + __version__)
-    (options, args) = oParser.parse_args()
-    if len(args) != 1:
-        oParser.print_help()
+
+    if len(sys.argv) != 2:
         print('')
         print('  Source code put in the public domain by Didier Stevens, no Copyright')
         print('  Use at your own risk')
@@ -147,10 +144,9 @@ def Main():
         print('  Modified Version By Fafner [_KeyZee_]')
 	print('  Only print Macro nothing else')
         return
-    elif len(args) == 0:
-        OLEDump('')
     else:
-        OLEDump(args[0])
+        OLEDump(sys.argv[1])
+	return
 
 if __name__ == '__main__':
     Main()
