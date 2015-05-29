@@ -26,7 +26,7 @@ def do_chr (m):
 
 def do_strme (m):
   if m.group (0) :
-    return eval(re.sub(r'[sS][tT][rR][rR][eE][vV][eE][rR][sS][eE]\((.*)\)',r'reverseme("\1")', m.group(0))) 
+    return eval(re.sub(r'[sS][tT][rR][rR][eE][vV][eE][rR][sS][eE]*\(([^)]*)\)',r'reverseme("\1")', m.group(0))) 
   return "" 
 
 f = open (sys.argv[1], 'rb') 
@@ -34,7 +34,8 @@ for line in f.readlines():
      line = re.sub (r'[cC][hH][rR][wW\$]*\(([\d+\+\-\s\.]*)\)', do_chr, line)
      line = re.sub (" & ", "", line) 
      line = re.sub ("& ", "", line)
-     line = re.sub (r'[sS][tT][rR][rR][eE][vV][eE][rR][sS][eE]\((.*)\)', do_strme, line)
+     line = line.replace("\"","")
+     line = re.sub (r'[sS][tT][rR][rR][eE][vV][eE][rR][sS][eE]\(([^)]*)\)', do_strme, line)
      line = line.rstrip ()
      print line
 f.close () 
