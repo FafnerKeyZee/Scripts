@@ -1,0 +1,13 @@
+bc
+bphwc
+
+find cip,"61c3"
+cmp $result,0
+je error
+bp $result+1
+erun
+cmp eip, esp+8
+ret
+error:
+  msg "not Found"
+  ret
