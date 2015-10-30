@@ -1,0 +1,18 @@
+var $lol
+
+bc
+bphwc
+
+find eip,#61C3#
+cmp $RESULT,0
+je error
+bp $RESULT+1
+erun
+cmp eip, "Read @ESP+8"
+mov $lol, [esp+8]
+msg $lol
+DM $lol, 100, "MyConfig.txt"
+ret
+error:
+  msg "not Found"
+  ret
